@@ -10,21 +10,20 @@ import lombok.Data;
  * description
  * </p>
  *
- * @author thestyleofme 2021-01-26 16:44:33
+ * @author thestyleofme 2021-01-26 16:44:41
  * @since 1.0.0
  */
 @Data
 @Entity
-@Table(name = "position")
-public class Position implements Serializable {
+@Table(name = "position_detail")
+public class PositionDetail implements Serializable {
 
-    private static final long serialVersionUID = -4562840864289148982L;
+    private static final long serialVersionUID = 6991553493581411891L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String salary;
-    private String city;
+    private Long pid;
+    private String description;
 
 }
