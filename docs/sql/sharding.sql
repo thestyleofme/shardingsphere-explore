@@ -27,6 +27,15 @@ CREATE TABLE `city`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
+create table c_user
+(
+    `id`       bigint(11) NOT NULL AUTO_INCREMENT,
+    name       varchar(20)  default null,
+    pwd_plain  varchar(100) default null,
+    pwd_cipher varchar(100) default null,
+    primary key (id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `b_order`
 (

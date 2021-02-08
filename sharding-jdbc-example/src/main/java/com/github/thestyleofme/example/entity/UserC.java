@@ -11,20 +11,25 @@ import lombok.ToString;
  * description
  * </p>
  *
- * @author thestyleofme 2021-01-26 16:43
+ * @author thestyleofme 2021-02-08 23:18
  * @since 1.0.0
  */
 @Data
 @Entity
-@Table(name = "city")
+@Table(name = "c_user")
 @ToString
-public class City implements Serializable {
+public class UserC implements Serializable {
 
-    private static final long serialVersionUID = 346974323861858586L;
+    private static final long serialVersionUID = -3302597532829736883L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String province;
+
+    /**
+     * 逻辑列名
+     */
+    @Column(name = "pwd")
+    private String pwd;
 }

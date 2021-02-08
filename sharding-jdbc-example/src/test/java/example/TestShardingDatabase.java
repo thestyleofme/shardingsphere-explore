@@ -2,6 +2,7 @@ package example;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.github.thestyleofme.example.ExampleApplication;
 import com.github.thestyleofme.example.entity.City;
@@ -17,6 +18,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Repeat;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -90,26 +92,24 @@ public class TestShardingDatabase {
     }
 
     @Test
+    @Repeat(20)
     public void testShardingOrder() {
-        OrderB orderB;
-        for (int i = 1; i <= 20; i++) {
-            orderB = new OrderB();
-            orderB.setIsDel(false);
-            orderB.setCompanyId(i);
-            orderB.setPositionId((long) i);
-            orderB.setUserId(i);
-            orderB.setPublishUserId(i);
-            orderB.setResumeType(1);
-            orderB.setStatus("AUTO");
-            orderB.setCreateTime(LocalDateTime.now());
-            orderB.setOperateTime(LocalDateTime.now());
-            orderB.setWorkYear("2");
-            orderB.setName("name" + i);
-            orderB.setPositionName("JAVA");
-            orderB.setResumeId(i);
-            orderRepositoryB.save(orderB);
-        }
-        Assert.assertTrue(orderRepositoryB.count() >= 20);
+        OrderB orderB = new OrderB();
+        orderB.setIsDel(false);
+        orderB.setCompanyId(ThreadLocalRandom.current().nextInt(10));
+        orderB.setPositionId(232323L);
+        orderB.setUserId(2222);
+        orderB.setPublishUserId(1111);
+        orderB.setResumeType(1);
+        orderB.setStatus("AUTO");
+        orderB.setCreateTime(LocalDateTime.now());
+        orderB.setOperateTime(LocalDateTime.now());
+        orderB.setWorkYear("2");
+        orderB.setName("name1");
+        orderB.setPositionName("JAVA");
+        orderB.setResumeId(23232);
+        orderRepositoryB.save(orderB);
+        Assert.assertNotNull(orderB.getId());
     }
 
 }
